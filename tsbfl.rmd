@@ -4,29 +4,13 @@ output: github_document
 knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md", envir = globalenv()) })
 ---
 
-```{r include = F}
-knitr::knit_hooks$set(source = function(x, options) {
-    hook.r = function(x, options) {
-      fence = "```"
-      language = tolower(options$engine)
-      if (language == "node") language = "javascript"
-      if (!options$highlight) language = "text"
-      if (!is.null(options$fold_code)) {
-        paste0("\n\n", "<details><summary>View Code</summary>\n", fence, language, "\n", x, fence, "\n\n", "</details>\n")
-      } else paste0('\n\n', fence, language, '\n', x, fence,  '\n\n')
-    }
-    x = knitr:::hilight_source(x, "markdown", options)
-    hook.r(paste(c(x, ""), collapse = "\n"), options)
-})
-```
-
 ### Contents
 
 - [Team Standings]
 - [Points Scored Per Game]
 - [Points Against Per Game]
 
-```{r message = F, warning = F, fold_code = T}
+```{r message = F, warning = F, echo = F}
 library(tidyverse)
 library(tvthemes)
 library(googlesheets4)
@@ -60,7 +44,7 @@ ___
 
 ### Team Standings
 
-```{r fold_code = T}
+```{r echo = F}
 team_records = data.frame(team = all_teams) |>
   left_join(teams, by = c("team" = "team_name")) |>
   separate(manager, into = c("manager", "last"), sep = " ") |>
@@ -91,7 +75,7 @@ ___
 
 ### Points Scored Per Game
 
-```{r fold_code = T}
+```{r echo = F}
 get_pts_scored = function(team) {
   home = end_games |> filter(home_team == team) |> pull(home_score)
   away = end_games |> filter(away_team == team) |> pull(away_score)
@@ -120,7 +104,7 @@ ___
 
 ### Points Against Per Game
 
-```{r fold_code = T}
+```{r echo = F}
 get_pts_against = function(team) {
   home = end_games |> filter(home_team == team) |> pull(away_score)
   away = end_games |> filter(away_team == team) |> pull(home_score)
