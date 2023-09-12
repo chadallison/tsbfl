@@ -154,6 +154,16 @@ against_plot
 
 
 
+```{r include = F}
+data.frame(team = all_teams) |>
+  mutate(scored = sapply(team, get_pts_scored),
+         against = sapply(team, get_pts_against)) |>
+  left_join(teams, by = c("team" = "team_name")) |>
+  separate(manager, into = c("first", "last"), sep = " ") |>
+  ggplot(aes(scored, against)) +
+  geom_point(size = 3) +
+  ggrepel::geom_text_repel(aes(label = first)) 
+```
 
 
 
