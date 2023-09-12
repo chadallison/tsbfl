@@ -40,7 +40,20 @@ end_games = games |>
          lose_score = ifelse(home_score > away_score, away_score, home_score))
 
 all_teams = sort(unique(c(unique(end_games$home_team), unique(end_games$away_team))))
+```
 
+</details>
+
+------------------------------------------------------------------------
+
+### Team Standings
+
+<details>
+<summary>
+View Code
+</summary>
+
+``` r
 team_records = data.frame(team = all_teams) |>
   left_join(teams, by = c("team" = "team_name")) |>
   separate(manager, into = c("manager", "last"), sep = " ") |>
@@ -57,7 +70,7 @@ team_records = data.frame(team = all_teams) |>
          pct = round(wins / (wins + losses), 3),
          team_name = paste0(team, " (", manager, ")"))
 
-standings_plot = team_records |>
+team_records |>
   ggplot(aes(reorder(team_name, pct), pct)) +
   geom_col(fill = "#90AC8D") +
   geom_text(aes(label = record), size = 3, hjust = -0.25) +
@@ -65,7 +78,22 @@ standings_plot = team_records |>
   labs(x = NULL, y = "Win Percentage",
        title = "Team Standings") +
   scale_y_continuous(breaks = seq(0, 1, by = 0.1), labels = scales::percent)
+```
 
+</details>
+
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+------------------------------------------------------------------------
+
+### Points Scored Per Game
+
+<details>
+<summary>
+View Code
+</summary>
+
+``` r
 get_pts_scored = function(team) {
   home = end_games |> filter(home_team == team) |> pull(home_score)
   away = end_games |> filter(away_team == team) |> pull(away_score)
@@ -78,7 +106,7 @@ pts_scored = data.frame(team = all_teams) |>
   transmute(team, team_name = paste0(team, " (", manager, ")")) |>
   mutate(scored = sapply(team, get_pts_scored))
 
-scored_plot = pts_scored |>
+pts_scored |>
   ggplot(aes(reorder(team_name, scored), scored)) +
   geom_col(aes(fill = scored), show.legend = F) +
   geom_text(aes(label = scored), size = 3, hjust = -0.25) +
@@ -88,7 +116,22 @@ scored_plot = pts_scored |>
   labs(x = NULL, y = "Points Scored Per Game",
        title = "Points Scored Per Game Standings",
        subtitle = "fuck you Eric")
+```
 
+</details>
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+------------------------------------------------------------------------
+
+### Points Against Per Game
+
+<details>
+<summary>
+View Code
+</summary>
+
+``` r
 get_pts_against = function(team) {
   home = end_games |> filter(home_team == team) |> pull(away_score)
   away = end_games |> filter(away_team == team) |> pull(home_score)
@@ -101,7 +144,7 @@ pts_against = data.frame(team = all_teams) |>
   transmute(team, team_name = paste0(team, " (", manager, ")")) |>
   mutate(against = sapply(team, get_pts_against))
 
-against_plot = pts_against |>
+pts_against |>
   ggplot(aes(reorder(team_name, against), against)) +
   geom_col(aes(fill = against), show.legend = F) +
   geom_text(aes(label = against), size = 3, hjust = -0.25) +
@@ -114,21 +157,5 @@ against_plot = pts_against |>
 ```
 
 </details>
-
-------------------------------------------------------------------------
-
-### Team Standings
-
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
-
-------------------------------------------------------------------------
-
-### Points Scored Per Game
-
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
-
-------------------------------------------------------------------------
-
-### Points Against Per Game
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
