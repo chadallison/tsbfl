@@ -9,6 +9,8 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Team Standings]
 - [Points Scored Per Game]
 - [Points Against Per Game]
+- [Scatterplot of Points Scored and Against]
+- [Optimal Lineup Setting]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -29,6 +31,7 @@ rest = "d/1EtllzbCMieF43EHT6p0NWPj7bGglvJ-kV7q7eXtY1zA/edit?usp=sharing"
 url = paste0(base, rest)
 teams = read_sheet(url, sheet = 1)
 games = read_sheet(url, sheet = 2)
+opt = read_sheet(url, sheet = 3)
 
 end_games = games |>
   filter(!is.na(away_score) & !is.na(home_score)) |>
@@ -130,23 +133,159 @@ pts_against |>
 ```
 
 
+### Scatterplot of Points Scored and Against
 
-
-```{r include = F}
-data.frame(team = all_teams) |>
+```{r echo = F}
+scored_against = data.frame(team = all_teams) |>
   mutate(scored = sapply(team, get_pts_scored),
          against = sapply(team, get_pts_against)) |>
   left_join(teams, by = c("team" = "team_name")) |>
   separate(manager, into = c("first", "last"), sep = " ") |>
+  mutate(diff = scored - against)
+
+scored_against |>
   ggplot(aes(scored, against)) +
-  geom_point(size = 3) +
-  ggrepel::geom_text_repel(aes(label = first)) 
+  geom_point(aes(col = diff), size = 5, show.legend = F) +
+  ggrepel::geom_text_repel(aes(label = first), box.padding = 0.5, segment.alpha = 0) +
+  geom_hline(yintercept = mean(scored_against$against), linetype = "dashed", alpha = 0.5) +
+  geom_vline(xintercept = mean(scored_against$scored), linetype = "dashed", alpha = 0.5) +
+  scale_color_gradient(low = "#CF9696", high = "#82B47D") +
+  scale_x_continuous(breaks = seq(0, 200, by = 5)) +
+  scale_y_continuous(breaks = seq(0, 200, by = 5)) +
+  labs(x = "Points Scored", y = "Points Against",
+       title = "Scatterplot of Points Scored v. Against",
+       subtitle = "Dashed Lines Represent League Averages")
 ```
 
 
+<!-- NEXT: MOST POINTS SCORED IN A LOSS / FEWEST POINTS SCORED IN A WIN -->
 
 
+### Optimal Lineup Setting
 
+```{r message = F, warning = F, echo = F}
+get_score = function(team, wk) {
+  df = end_games |> filter(week == wk & (away_team == team | home_team == team))
+  if (df$home_team == team) return(df$home_score)
+  if (df$away_team == team) return(df$away_score)
+}
+
+get_optimal_score = function(team, wk) {
+  
+  df = opt |>
+    filter(team_name == team & week == wk) |>
+    mutate(used = 0)
+  
+  all_pos = unique(df$pos)
+  
+  for (i in 1:length(all_pos)) {
+    if (!all_pos[i] %in% c("dst", "k", "qb", "rb", "te", "wr")) {
+      return(warning("ensure positions entered correctly"))
+    }
+  }
+  
+  qb1 = df |>
+    filter(pos == "qb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == qb1, 1, 0))
+  
+  qb2 = df |>
+    filter(pos == "qb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == qb2, 1, 0))
+  
+  rb = df |>
+    filter(pos == "rb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == rb, 1, 0))
+  
+  wrte = df |>
+    filter(pos %in% c("wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == wrte, 1, 0))
+  
+  x1 = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == x1, 1, 0))
+  
+  x2 = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == x2, 1, 0))
+  
+  x3 = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == x3, 1, 0))
+  
+  dst = df |>
+    filter(pos == "dst" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == dst, 1, 0))
+  
+  k = df |>
+    filter(pos == "k" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pts)
+  
+  df = df |>
+    mutate(used = ifelse(used == 1 | pts == k, 1, 0))
+  
+  return(qb1 + qb2 + rb + wrte + x1 + x2 + x3 + dst + k)
+  
+}
+
+teams_vec = rep(all_teams, times = max(end_games$week))
+week_vec = NULL
+
+for (i in 1:max(end_games$week)) {
+  new_vec = rep(i, times = 10)
+  week_vec = c(week_vec, new_vec)
+}
+
+data.frame(team = teams_vec, week = week_vec) |>
+  rowwise() |>
+  mutate(actual_pts = get_score(team, week),
+         optimal_pts = get_optimal_score(team, week)) |>
+  ungroup() |>
+  mutate(missed_pts = optimal_pts - actual_pts) |>
+  pivot_longer(!c(team, week, missed_pts), names_to = "class", values_to = "value") |>
+  mutate(team = paste0(team, " (", round(missed_pts, 3), ")"),
+         class = ifelse(class == "actual_pts", "Actual", "Optimal")) |>
+  ggplot(aes(reorder(team, -missed_pts), value)) +
+  geom_col(aes(fill = class), position = "dodge") +
+  coord_flip() +
+  labs(x = NULL, y = "Points Scored", fill = NULL,
+       title = "Who sucks at setting their lineup?",
+       subtitle = "Ordered top to bottom") +
+  scale_fill_manual(values = c("#CF9696", "#82B47D")) +
+  scale_y_continuous(breaks = seq(0, 1000, by = 10))
+```
 
 
 
