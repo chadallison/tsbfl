@@ -132,6 +132,7 @@ pts_against |>
        subtitle = "fuck you Eric")
 ```
 
+___
 
 ### Scatterplot of Points Scored and Against
 
@@ -162,6 +163,8 @@ scored_against |>
 
 
 ### Optimal Lineup Setting
+
+___
 
 ```{r message = F, warning = F, echo = F}
 get_score = function(team, wk) {

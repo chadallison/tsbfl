@@ -28,6 +28,8 @@ Travis Scott Burger Fantasy League
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
+------------------------------------------------------------------------
+
 ### Scatterplot of Points Scored and Against
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -35,5 +37,7 @@ Travis Scott Burger Fantasy League
 <!-- NEXT: MOST POINTS SCORED IN A LOSS / FEWEST POINTS SCORED IN A WIN -->
 
 ### Optimal Lineup Setting
+
+------------------------------------------------------------------------
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
