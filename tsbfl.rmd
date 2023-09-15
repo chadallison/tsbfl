@@ -11,6 +11,8 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Points Against Per Game]
 - [Scatterplot of Points Scored and Against]
 - [Optimal Lineup Setting]
+- [Most Points Scored in a Loss]
+- [Fewest Points Scored in a Victory]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -99,8 +101,7 @@ pts_scored |>
   scale_fill_gradient(high = "#82B47D", low = "#CF9696") +
   scale_y_continuous(breaks = seq(0, 150, by = 10)) +
   labs(x = NULL, y = "Points Scored Per Game",
-       title = "Points Scored Per Game Standings",
-       subtitle = "fuck you Eric")
+       title = "Points Scored Per Game Standings")
 ```
 
 ___
@@ -128,8 +129,7 @@ pts_against |>
   scale_fill_gradient(low = "#82B47D", high = "#CF9696") +
   scale_y_continuous(breaks = seq(0, 150, by = 10)) +
   labs(x = NULL, y = "Points Against Per Game",
-       title = "Points Against Per Game Standings",
-       subtitle = "fuck you Eric")
+       title = "Points Against Per Game Standings")
 ```
 
 ___
@@ -158,10 +158,6 @@ scored_against |>
        subtitle = "Dashed Lines Represent League Averages")
 ```
 
-
-<!-- NEXT: MOST POINTS SCORED IN A LOSS / FEWEST POINTS SCORED IN A WIN -->
-
-
 ### Optimal Lineup Setting
 
 ___
@@ -177,7 +173,8 @@ get_optimal_score = function(team, wk) {
   
   df = opt |>
     filter(team_name == team & week == wk) |>
-    mutate(used = 0)
+    mutate(used = 0,
+           pnum = row_number())
   
   all_pos = unique(df$pos)
   
@@ -192,72 +189,117 @@ get_optimal_score = function(team, wk) {
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  qb1n = df |>
+    filter(pos == "qb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == qb1, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == qb1n, 1, 0))
   
   qb2 = df |>
     filter(pos == "qb" & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  qb2n = df |>
+    filter(pos == "qb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == qb2, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == qb2n, 1, 0))
   
   rb = df |>
     filter(pos == "rb" & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  rbn = df |>
+    filter(pos == "rb" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == rb, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == rbn, 1, 0))
   
   wrte = df |>
     filter(pos %in% c("wr", "te") & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  wrten = df |>
+    filter(pos %in% c("wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == wrte, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == wrten, 1, 0))
   
   x1 = df |>
     filter(pos %in% c("rb", "wr", "te") & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  x1n = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == x1, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == x1n, 1, 0))
   
   x2 = df |>
     filter(pos %in% c("rb", "wr", "te") & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  x2n = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == x2, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == x2n, 1, 0))
   
   x3 = df |>
     filter(pos %in% c("rb", "wr", "te") & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  x3n = df |>
+    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == x3, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == x3n, 1, 0))
   
   dst = df |>
     filter(pos == "dst" & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  dstn = df |>
+    filter(pos == "dst" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == dst, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == dstn, 1, 0))
   
   k = df |>
     filter(pos == "k" & used == 0) |>
     slice_max(pts, n = 1, with_ties = F) |>
     pull(pts)
   
+  kn = df |>
+    filter(pos == "k" & used == 0) |>
+    slice_max(pts, n = 1, with_ties = F) |>
+    pull(pnum)
+  
   df = df |>
-    mutate(used = ifelse(used == 1 | pts == k, 1, 0))
+    mutate(used = ifelse(used == 1 | pnum == kn, 1, 0))
   
   return(qb1 + qb2 + rb + wrte + x1 + x2 + x3 + dst + k)
   
@@ -290,13 +332,41 @@ data.frame(team = teams_vec, week = week_vec) |>
   scale_y_continuous(breaks = seq(0, 1000, by = 10))
 ```
 
+___
 
+### Most Points Scored in a Loss
 
+```{r echo = F}
+desc = end_games |>
+  select(week, win_team, lose_team, win_score, lose_score) |>
+  slice_max(lose_score, n = 5, with_ties = F) |>
+  mutate(desc = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, "-", lose_score)) |>
+  pull(desc)
+```
 
+- `r desc[1]`
+- `r desc[2]`
+- `r desc[3]`
+- `r desc[4]`
+- `r desc[5]`
 
+___
 
+### Fewest Points Scored in a Victory
 
+```{r echo = F}
+desc = end_games |>
+  select(week, win_team, lose_team, win_score, lose_score) |>
+  slice_min(win_score, n = 5, with_ties = F) |>
+  mutate(desc = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, "-", lose_score)) |>
+  pull(desc)
+```
 
+- `r desc[1]`
+- `r desc[2]`
+- `r desc[3]`
+- `r desc[4]`
+- `r desc[5]`
 
 
 
