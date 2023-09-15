@@ -158,9 +158,9 @@ scored_against |>
        subtitle = "Dashed Lines Represent League Averages")
 ```
 
-### Optimal Lineup Setting
-
 ___
+
+### Optimal Lineup Setting
 
 ```{r message = F, warning = F, echo = F}
 get_score = function(team, wk) {
@@ -170,139 +170,37 @@ get_score = function(team, wk) {
 }
 
 get_optimal_score = function(team, wk) {
-  
-  df = opt |>
-    filter(team_name == team & week == wk) |>
-    mutate(used = 0,
-           pnum = row_number())
-  
+  df = opt |> filter(team_name == team & week == wk) |> mutate(used = 0, pnum = row_number())
   all_pos = unique(df$pos)
-  
-  for (i in 1:length(all_pos)) {
-    if (!all_pos[i] %in% c("dst", "k", "qb", "rb", "te", "wr")) {
-      return(warning("ensure positions entered correctly"))
-    }
-  }
-  
-  qb1 = df |>
-    filter(pos == "qb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  qb1n = df |>
-    filter(pos == "qb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == qb1n, 1, 0))
-  
-  qb2 = df |>
-    filter(pos == "qb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  qb2n = df |>
-    filter(pos == "qb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == qb2n, 1, 0))
-  
-  rb = df |>
-    filter(pos == "rb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  rbn = df |>
-    filter(pos == "rb" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == rbn, 1, 0))
-  
-  wrte = df |>
-    filter(pos %in% c("wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  wrten = df |>
-    filter(pos %in% c("wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == wrten, 1, 0))
-  
-  x1 = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  x1n = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == x1n, 1, 0))
-  
-  x2 = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  x2n = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == x2n, 1, 0))
-  
-  x3 = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  x3n = df |>
-    filter(pos %in% c("rb", "wr", "te") & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == x3n, 1, 0))
-  
-  dst = df |>
-    filter(pos == "dst" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  dstn = df |>
-    filter(pos == "dst" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == dstn, 1, 0))
-  
-  k = df |>
-    filter(pos == "k" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pts)
-  
-  kn = df |>
-    filter(pos == "k" & used == 0) |>
-    slice_max(pts, n = 1, with_ties = F) |>
-    pull(pnum)
-  
-  df = df |>
-    mutate(used = ifelse(used == 1 | pnum == kn, 1, 0))
-  
+  for (i in 1:length(all_pos)) if (!all_pos[i] %in% c("dst", "k", "qb", "rb", "te", "wr")) return(warning("ensure positions entered correctly"))
+  qb1 = df |> filter(pos == "qb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  qb1n = df |> filter(pos == "qb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == qb1n, 1, 0))
+  qb2 = df |> filter(pos == "qb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  qb2n = df |> filter(pos == "qb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == qb2n, 1, 0))
+  rb = df |> filter(pos == "rb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  rbn = df |> filter(pos == "rb" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == rbn, 1, 0))
+  wrte = df |> filter(pos %in% c("wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  wrten = df |> filter(pos %in% c("wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == wrten, 1, 0))
+  x1 = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  x1n = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == x1n, 1, 0))
+  x2 = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  x2n = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == x2n, 1, 0))
+  x3 = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  x3n = df |> filter(pos %in% c("rb", "wr", "te") & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == x3n, 1, 0))
+  dst = df |> filter(pos == "dst" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  dstn = df |> filter(pos == "dst" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == dstn, 1, 0))
+  k = df |> filter(pos == "k" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pts)
+  kn = df |> filter(pos == "k" & used == 0) |> slice_max(pts, n = 1, with_ties = F) |> pull(pnum)
+  df = df |> mutate(used = ifelse(used == 1 | pnum == kn, 1, 0))
   return(qb1 + qb2 + rb + wrte + x1 + x2 + x3 + dst + k)
-  
 }
 
 teams_vec = rep(all_teams, times = max(end_games$week))
@@ -313,7 +211,7 @@ for (i in 1:max(end_games$week)) {
   week_vec = c(week_vec, new_vec)
 }
 
-data.frame(team = teams_vec, week = week_vec) |>
+optimal_df = data.frame(team = teams_vec, week = week_vec) |>
   rowwise() |>
   mutate(actual_pts = get_score(team, week),
          optimal_pts = get_optimal_score(team, week)) |>
@@ -321,13 +219,16 @@ data.frame(team = teams_vec, week = week_vec) |>
   mutate(missed_pts = optimal_pts - actual_pts) |>
   pivot_longer(!c(team, week, missed_pts), names_to = "class", values_to = "value") |>
   mutate(team = paste0(team, " (", round(missed_pts, 3), ")"),
-         class = ifelse(class == "actual_pts", "Actual", "Optimal")) |>
+         class = ifelse(class == "actual_pts", "Actual", "Optimal"))
+
+optimal_df |>
   ggplot(aes(reorder(team, -missed_pts), value)) +
   geom_col(aes(fill = class), position = "dodge") +
-  coord_flip() +
+  geom_text(aes(label = value), size = 3, position = position_dodge2(width = 0.9), hjust = -0.15, alpha = 0.5) +
+  coord_flip(ylim = c(0, max(optimal_df$value) * 1.05)) +
   labs(x = NULL, y = "Points Scored", fill = NULL,
        title = "Who sucks at setting their lineup?",
-       subtitle = "Ordered top to bottom") +
+       subtitle = "Top (best) to bottom (worst)") +
   scale_fill_manual(values = c("#CF9696", "#82B47D")) +
   scale_y_continuous(breaks = seq(0, 1000, by = 10))
 ```
