@@ -9,6 +9,7 @@ Travis Scott Burger Fantasy League
 - [Scatterplot of Points Scored and
   Against](#scatterplot-of-points-scored-and-against)
 - [Optimal Lineup Setting](#optimal-lineup-setting)
+- [Season-Long Optimal Lineups](#season-long-optimal-lineups)
 - [Most Points Scored in a Loss](#most-points-scored-in-a-loss)
 - [Fewest Points Scored in a
   Victory](#fewest-points-scored-in-a-victory)
@@ -42,6 +43,12 @@ Travis Scott Burger Fantasy League
 ### Optimal Lineup Setting
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+------------------------------------------------------------------------
+
+### Season-Long Optimal Lineups
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 

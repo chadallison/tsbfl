@@ -11,6 +11,7 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Points Against Per Game]
 - [Scatterplot of Points Scored and Against]
 - [Optimal Lineup Setting]
+- [Season-Long Optimal Lineups]
 - [Most Points Scored in a Loss]
 - [Fewest Points Scored in a Victory]
 
@@ -237,6 +238,37 @@ optimal_df |>
 ```
 
 ___
+
+### Season-Long Optimal Lineups
+
+```{r echo = F}
+szn_optimal = data.frame(team = teams_vec, week = week_vec) |>
+  rowwise() |>
+  mutate(actual_pts = get_score(team, week),
+         optimal_pts = get_optimal_score(team, week)) |>
+  ungroup() |>
+  group_by(team) |>
+  summarise(actual_pts = sum(actual_pts),
+            optimal_pts = sum(optimal_pts)) |>
+  mutate(missed_pts = optimal_pts - actual_pts) |>
+  pivot_longer(c(actual_pts, optimal_pts), names_to = "class", values_to = "value") |>
+  mutate(class = ifelse(class == "actual_pts", "Actual", "Optimal"),
+         team = paste0(team, " (", missed_pts, ")"))
+
+szn_optimal |>
+  ggplot(aes(reorder(team, -missed_pts), value)) +
+  geom_col(aes(fill = class), position = "dodge") +
+  geom_text(aes(label = value), size = 3, position = position_dodge2(width = 0.9), hjust = -0.15, alpha = 0.5) +
+  coord_flip(ylim = c(0, max(szn_optimal$value) * 1.05)) +
+  labs(x = NULL, y = "Points Scored", fill = NULL,
+       title = "Who is the best at setting their lineup this season?",
+       subtitle = "Top (best) to bottom (worst)") +
+  scale_fill_manual(values = c("#CF9696", "#82B47D")) +
+  scale_y_continuous(breaks = seq(0, 1000, by = 25))
+```
+
+___
+
 
 ### Most Points Scored in a Loss
 
