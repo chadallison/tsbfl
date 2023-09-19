@@ -221,13 +221,16 @@ optimal_df = data.frame(team = teams_vec, week = week_vec) |>
   mutate(team = paste0(team, " (", round(missed_pts, 3), ")"),
          class = ifelse(class == "actual_pts", "Actual", "Optimal"))
 
+max_week = max(optimal_df$week)
+
 optimal_df |>
+  filter(week == max_week) |>
   ggplot(aes(reorder(team, -missed_pts), value)) +
   geom_col(aes(fill = class), position = "dodge") +
   geom_text(aes(label = value), size = 3, position = position_dodge2(width = 0.9), hjust = -0.15, alpha = 0.5) +
   coord_flip(ylim = c(0, max(optimal_df$value) * 1.05)) +
   labs(x = NULL, y = "Points Scored", fill = NULL,
-       title = "Who sucks at setting their lineup?",
+       title = "Who sucked at setting their lineup this past week?",
        subtitle = "Top (best) to bottom (worst)") +
   scale_fill_manual(values = c("#CF9696", "#82B47D")) +
   scale_y_continuous(breaks = seq(0, 1000, by = 10))
