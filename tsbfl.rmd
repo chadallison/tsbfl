@@ -97,7 +97,7 @@ pts_scored = data.frame(team = all_teams) |>
 pts_scored |>
   ggplot(aes(reorder(team_name, scored), scored)) +
   geom_col(aes(fill = scored), show.legend = F) +
-  geom_text(aes(label = scored), size = 3, hjust = -0.25) +
+  geom_text(aes(label = round(scored, 2)), size = 3, hjust = -0.25) +
   coord_flip(ylim = c(0, max(pts_scored$scored * 1.05))) +
   scale_fill_gradient(high = "#82B47D", low = "#CF9696") +
   scale_y_continuous(breaks = seq(0, 150, by = 10)) +
@@ -125,7 +125,7 @@ pts_against = data.frame(team = all_teams) |>
 pts_against |>
   ggplot(aes(reorder(team_name, against), against)) +
   geom_col(aes(fill = against), show.legend = F) +
-  geom_text(aes(label = against), size = 3, hjust = -0.25) +
+  geom_text(aes(label = round(against, 2)), size = 3, hjust = -0.25) +
   coord_flip(ylim = c(0, max(pts_against$against * 1.05))) +
   scale_fill_gradient(low = "#82B47D", high = "#CF9696") +
   scale_y_continuous(breaks = seq(0, 150, by = 10)) +
@@ -253,7 +253,7 @@ szn_optimal = data.frame(team = teams_vec, week = week_vec) |>
   mutate(missed_pts = optimal_pts - actual_pts) |>
   pivot_longer(c(actual_pts, optimal_pts), names_to = "class", values_to = "value") |>
   mutate(class = ifelse(class == "actual_pts", "Actual", "Optimal"),
-         team = paste0(team, " (", missed_pts, ")"))
+         team = paste0(team, " (", round(missed_pts, 2), ")"))
 
 szn_optimal |>
   ggplot(aes(reorder(team, -missed_pts), value)) +

@@ -54,12 +54,12 @@ Travis Scott Burger Fantasy League
 
 ### Most Points Scored in a Loss
 
+- Week 3: Free Willy def. Injured Reserves 147.9-130.44
 - Week 2: Shock Squad def. He’s Litewally Gwiddying 132.36-125.3
 - Week 2: Henry Ruggs Driving School def. Šæñ Fräńßīśčo 4D9RRRz
   135.36-120.7
+- Week 3: Bearly Alive def. He’s Litewally Gwiddying 147.32-120.12
 - Week 1: Šæñ Fräńßīśčo 4D9RRRz def. Shock Squad 116.64-110.88
-- Week 2: Injured Reserves def. Antonio Brown’s Translator 124.8-106.98
-- Week 2: Big Digg Hurts def. Free Willy 133.04-101.62
 
 ------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ Travis Scott Burger Fantasy League
 
 - Week 1: Bearly Alive def. Injured Reserves 102.54-97.26
 - Week 2: Bearly Alive def. Burlington Throat Factory 103.84-77.06
+- Week 3: Antonio Brown’s Translator def. Shock Squad 106.14-83.28
 - Week 1: Henry Ruggs Driving School def. Big Digg Hurts 106.56-82.44
-- Week 1: Šæñ Fräńßīśčo 4D9RRRz def. Shock Squad 116.64-110.88
-- Week 1: He’s Litewally Gwiddying def. Antonio Brown’s Translator
-  123.58-80.32
+- Week 3: Henry Ruggs Driving School def. Burlington Throat Factory
+  112.52-81.08
