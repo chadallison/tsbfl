@@ -35,6 +35,7 @@ url = paste0(base, rest)
 teams = read_sheet(url, sheet = 1)
 games = read_sheet(url, sheet = 2)
 opt = read_sheet(url, sheet = 3)
+draft = read_sheet(url, sheet = 4)
 
 end_games = games |>
   filter(!is.na(away_score) & !is.na(home_score)) |>
@@ -303,6 +304,77 @@ desc = end_games |>
 - `r desc[3]`
 - `r desc[4]`
 - `r desc[5]`
+
+___
+
+### IGNORE ALL THIS STUFF I'M EXPERIMENTING
+
+
+```{r}
+opt |>
+  group_by(team_name, week) |>
+  reframe(pct_of_pts = round(pts / sum(pts), 3)) |>
+  group_by(team_name, week) |>
+  slice_max(pct_of_pts, n = 1, with_ties = F) |>
+  ungroup() |>
+  arrange(desc(pct_of_pts))
+```
+
+
+
+```{r}
+opt |>
+  mutate(player = str_remove_all(player, "\n.*")) |>
+  group_by(player) |>
+  summarise(pts = sum(pts))
+```
+
+
+```{r}
+all_players = opt |>
+  mutate(player = str_remove_all(player, "\n.*")) |>
+  pull(player) |>
+  unique()
+
+regex_names = data.frame(all_players) |>
+  separate(all_players, into = c("first", "last"), sep = " ") |>
+  mutate(name = paste0(substr(first, 1, 1), ". ", last)) |>
+  pull(name)
+
+intersect(unique(draft$player), regex_names)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
