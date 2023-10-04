@@ -14,6 +14,7 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Season-Long Optimal Lineups]
 - [Most Points Scored in a Loss]
 - [Fewest Points Scored in a Victory]
+- [Weekly Scoring Trends]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -307,10 +308,42 @@ desc = end_games |>
 
 ___
 
-### IGNORE ALL THIS STUFF I'M EXPERIMENTING
+### Weekly Scoring Trends
 
+```{r echo = F}
+get_total_pts_scored = function(team) {
+  home = end_games |> filter(home_team == team) |> pull(home_score) |> sum()
+  away = end_games |> filter(away_team == team) |> pull(away_score) |> sum()
+  return(home + away)
+}
 
-```{r}
+weekly_scores = data.frame()
+
+for (i in 1:length(all_teams)) {
+  for (j in 1:max(end_games$week)) {
+    df = end_games |> filter(week == j & (home_team == all_teams[i] | away_team == all_teams[i]))
+    if (df$home_team == all_teams[i]) value = df$home_score
+    if (df$away_team == all_teams[i]) value = df$away_score
+    x = data.frame(team = all_teams[i], week = j, score = value)
+    weekly_scores = rbind(weekly_scores, x)
+  }
+}
+
+weekly_scores |>
+  mutate(total_score = sapply(team, get_total_pts_scored),
+         week_pct = round(score / total_score, 3),
+         team = paste0(team, "\n(", total_score, ")")) |>
+  ggplot(aes(week, week_pct)) +
+  geom_line(aes(col = total_score), linewidth = 2, show.legend = F) +
+  scale_color_gradient(low = "indianred3", high = "springgreen4") +
+  facet_wrap(vars(team)) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Week Number", y = "Percent of Total Points Scored",
+       title = "Weekly Scoring Trends",
+       subtitle = "Line Color Indicates Total Points Scored")
+```
+
+```{r include = F}
 opt |>
   group_by(team_name, week) |>
   reframe(pct_of_pts = round(pts / sum(pts), 3)) |>
@@ -322,15 +355,16 @@ opt |>
 
 
 
-```{r}
+```{r include = F}
 opt |>
   mutate(player = str_remove_all(player, "\n.*")) |>
   group_by(player) |>
-  summarise(pts = sum(pts))
+  summarise(pts = sum(pts)) |>
+  arrange(desc(pts))
 ```
 
 
-```{r}
+```{r include = F}
 all_players = opt |>
   mutate(player = str_remove_all(player, "\n.*")) |>
   pull(player) |>
@@ -343,7 +377,6 @@ regex_names = data.frame(all_players) |>
 
 intersect(unique(draft$player), regex_names)
 ```
-
 
 
 
