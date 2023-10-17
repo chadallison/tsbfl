@@ -15,6 +15,7 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Most Points Scored in a Loss]
 - [Fewest Points Scored in a Victory]
 - [Weekly Scoring Trends]
+- [Close Games]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -342,6 +343,53 @@ weekly_scores |>
        title = "Weekly Scoring Trends",
        subtitle = "Line Color Indicates Total Points Scored")
 ```
+
+___
+
+### Close Games
+
+```{r echo = F}
+end_margins = end_games |>
+  mutate(game_margin = abs(home_score - away_score))
+
+get_team_avg_margin = function(team) {
+  return(end_margins |>
+    filter(home_team == team | away_team == team) |>
+    pull(game_margin) |>
+    mean() |>
+    round(2))
+}
+
+margin_vis_df = data.frame(team = all_teams) |>
+  mutate(avg_margin = sapply(team, get_team_avg_margin))
+
+margin_vis_df |>
+  ggplot(aes(reorder(team, -avg_margin), avg_margin)) +
+  geom_col(aes(fill = avg_margin), show.legend = F) +
+  geom_text(aes(label = avg_margin), size = 3.5, hjust = -0.25) +
+  coord_flip(ylim = c(0, max(margin_vis_df$avg_margin) * 1.1)) +
+  scale_fill_gradient(high = "springgreen4", low = "indianred3") +
+  scale_y_continuous(breaks = seq(0, 100, by = 5)) +
+  labs(x = NULL, y = "Average Game Margin",
+       title = "Who is playing the closest games, on average?",
+       subtitle = "Without regard to winning or losing")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r include = F}
 opt |>

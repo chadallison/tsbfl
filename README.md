@@ -14,6 +14,7 @@ Travis Scott Burger Fantasy League
 - [Fewest Points Scored in a
   Victory](#fewest-points-scored-in-a-victory)
 - [Weekly Scoring Trends](#weekly-scoring-trends)
+- [Close Games](#close-games)
 
 ------------------------------------------------------------------------
 
@@ -66,14 +67,20 @@ Travis Scott Burger Fantasy League
 
 ### Fewest Points Scored in a Victory
 
+- Week 6: Free Willy def. He’s Litewally Gwiddying 88.8-82.32
 - Week 4: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 89.24-72.64
 - Week 1: Bearly Alive def. Injured Reserves 102.54-97.26
+- Week 6: Burlington Throat Factory def. Injured Reserves 102.64-95.88
 - Week 2: Bearly Alive def. Burlington Throat Factory 103.84-77.06
-- Week 3: Antonio Brown’s Translator def. Shock Squad 106.14-83.28
-- Week 1: Henry Ruggs Driving School def. Big Digg Hurts 106.56-82.44
 
 ------------------------------------------------------------------------
 
 ### Weekly Scoring Trends
 
 ![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+------------------------------------------------------------------------
+
+### Close Games
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
