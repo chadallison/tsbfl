@@ -115,12 +115,31 @@ Travis Scott Burger Fantasy League
 
 ### Closest Games
 
-- Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
-  104.36
-- Week 4: Big Digg Hurts def. Burlington Throat Factory 141.22 to 88.2
-- Week 5: Free Willy def. Henry Ruggs Driving School 125.58 to 74.12
-- Week 1: He’s Litewally Gwiddying def. Antonio Brown’s Translator
-  123.58 to 80.32
-- Week 3: Šæñ Fräńßīśčo 4D9RRRz def. Big Digg Hurts 146.12 to 107.18
+- Week 4: Injured Reserves def. Shock Squad 131.48 to 126.72
+- Week 1: Bearly Alive def. Injured Reserves 102.54 to 97.26
+- Week 1: Šæñ Fräńßīśčo 4D9RRRz def. Shock Squad 116.64 to 110.88
+- Week 6: Free Willy def. He’s Litewally Gwiddying 88.8 to 82.32
+- Week 6: Burlington Throat Factory def. Injured Reserves 102.64 to
+  95.88
+
+------------------------------------------------------------------------
+
+### Most Points Scored by One Team
+
+- 184.94 (Burlington Throat Factory, Week 5)
+- 147.9 (Free Willy, Week 3)
+- 147.32 (Bearly Alive, Week 3)
+- 146.12 (Šæñ Fräńßīśčo 4D9RRRz, Week 3)
+- 141.22 (Big Digg Hurts, Week 4)
+
+------------------------------------------------------------------------
+
+### Fewest Points Scored by One Team
+
+- 72.64 (Šæñ Fräńßīśčo 4D9RRRz, Week 4)
+- 74.12 (Henry Ruggs Driving School, Week 5)
+- 77.06 (Burlington Throat Factory, Week 2)
+- 80.32 (Antonio Brown’s Translator, Week 1)
+- 81.08 (Burlington Throat Factory, Week 3)
 
 ------------------------------------------------------------------------

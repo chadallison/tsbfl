@@ -401,8 +401,6 @@ ___
 ### Biggest Blowouts
 
 ```{r echo = F}
-# x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)
-
 blow = end_games |>
   mutate(margin = abs(win_score - lose_score),
          x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)) |>
@@ -424,7 +422,7 @@ ___
 close = end_games |>
   mutate(margin = abs(win_score - lose_score),
          x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)) |>
-  slice_max(margin, n = 5, with_ties = F) |>
+  slice_min(margin, n = 5, with_ties = F) |>
   pull(x)
 ```
 
@@ -436,7 +434,39 @@ close = end_games |>
 
 ___
 
+### Most Points Scored by One Team
 
+```{r echo = F}
+most = weekly_scores |>
+  slice_max(score, n = 5, with_ties = F) |>
+  mutate(x = paste0(score, " (", team, ", Week ", week, ")")) |>
+  pull(x)
+```
+
+- `r most[1]`
+- `r most[2]`
+- `r most[3]`
+- `r most[4]`
+- `r most[5]`
+
+___
+
+### Fewest Points Scored by One Team
+
+```{r echo = F}
+few = weekly_scores |>
+  slice_min(score, n = 5, with_ties = F) |>
+  mutate(x = paste0(score, " (", team, ", Week ", week, ")")) |>
+  pull(x)
+```
+
+- `r few[1]`
+- `r few[2]`
+- `r few[3]`
+- `r few[4]`
+- `r few[5]`
+
+___
 
 
 
