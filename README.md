@@ -15,6 +15,9 @@ Travis Scott Burger Fantasy League
   Victory](#fewest-points-scored-in-a-victory)
 - [Weekly Scoring Trends](#weekly-scoring-trends)
 - [Close Games](#close-games)
+- [Highest Scoring Games](#highest-scoring-games)
+- [Biggest Blowouts](#biggest-blowouts)
+- [Closest Games](#closest-games)
 
 ------------------------------------------------------------------------
 
@@ -84,3 +87,40 @@ Travis Scott Burger Fantasy League
 ### Close Games
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+
+------------------------------------------------------------------------
+
+### Highest Scoring Games
+
+- Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
+  104.36
+- Week 3: Free Willy def. Injured Reserves 147.9 to 130.44
+- Week 3: Bearly Alive def. He’s Litewally Gwiddying 147.32 to 120.12
+- Week 4: Injured Reserves def. Shock Squad 131.48 to 126.72
+- Week 2: Shock Squad def. He’s Litewally Gwiddying 132.36 to 125.3
+
+------------------------------------------------------------------------
+
+### Biggest Blowouts
+
+- Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
+  104.36
+- Week 4: Big Digg Hurts def. Burlington Throat Factory 141.22 to 88.2
+- Week 5: Free Willy def. Henry Ruggs Driving School 125.58 to 74.12
+- Week 1: He’s Litewally Gwiddying def. Antonio Brown’s Translator
+  123.58 to 80.32
+- Week 3: Šæñ Fräńßīśčo 4D9RRRz def. Big Digg Hurts 146.12 to 107.18
+
+------------------------------------------------------------------------
+
+### Closest Games
+
+- Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
+  104.36
+- Week 4: Big Digg Hurts def. Burlington Throat Factory 141.22 to 88.2
+- Week 5: Free Willy def. Henry Ruggs Driving School 125.58 to 74.12
+- Week 1: He’s Litewally Gwiddying def. Antonio Brown’s Translator
+  123.58 to 80.32
+- Week 3: Šæñ Fräńßīśčo 4D9RRRz def. Big Digg Hurts 146.12 to 107.18
+
+------------------------------------------------------------------------

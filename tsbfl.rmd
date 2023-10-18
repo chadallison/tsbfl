@@ -16,6 +16,9 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Fewest Points Scored in a Victory]
 - [Weekly Scoring Trends]
 - [Close Games]
+- [Highest Scoring Games]
+- [Biggest Blowouts]
+- [Closest Games]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -375,10 +378,63 @@ margin_vis_df |>
        subtitle = "Without regard to winning or losing")
 ```
 
+___
 
+### Highest Scoring Games
 
+```{r echo = F}
+high = end_games |>
+  mutate(total_score = win_score + lose_score,
+         x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)) |>
+  slice_max(total_score, n = 5, with_ties = F) |>
+  pull(x)
+```
 
+- `r high[1]`
+- `r high[2]`
+- `r high[3]`
+- `r high[4]`
+- `r high[5]`
 
+___
+
+### Biggest Blowouts
+
+```{r echo = F}
+# x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)
+
+blow = end_games |>
+  mutate(margin = abs(win_score - lose_score),
+         x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)) |>
+  slice_max(margin, n = 5, with_ties = F) |>
+  pull(x)
+```
+
+- `r blow[1]`
+- `r blow[2]`
+- `r blow[3]`
+- `r blow[4]`
+- `r blow[5]`
+
+___
+
+### Closest Games
+
+```{r echo = F}
+close = end_games |>
+  mutate(margin = abs(win_score - lose_score),
+         x = paste0("Week ", week, ": ", win_team, " def. ", lose_team, " ", win_score, " to ", lose_score)) |>
+  slice_max(margin, n = 5, with_ties = F) |>
+  pull(x)
+```
+
+- `r close[1]`
+- `r close[2]`
+- `r close[3]`
+- `r close[4]`
+- `r close[5]`
+
+___
 
 
 
