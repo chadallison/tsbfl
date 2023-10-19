@@ -269,8 +269,7 @@ szn_optimal |>
   labs(x = NULL, y = "Points Scored", fill = NULL,
        title = "Who is the best at setting their lineup this season?",
        subtitle = "Top (best) to bottom (worst)") +
-  scale_fill_manual(values = c("#CF9696", "#82B47D")) +
-  scale_y_continuous(breaks = seq(0, 1000, by = 25))
+  scale_fill_manual(values = c("#CF9696", "#82B47D"))
 ```
 
 ___
@@ -468,6 +467,29 @@ few = weekly_scores |>
 
 ___
 
+```{r include = F}
+missed_records = data.frame(team = teams_vec, week = week_vec) |>
+  rowwise() |>
+  mutate(actual_pts = get_score(team, week),
+         optimal_pts = get_optimal_score(team, week)) |>
+  ungroup() |>
+  group_by(team) |>
+  summarise(actual_pts = sum(actual_pts),
+            optimal_pts = sum(optimal_pts)) |>
+  mutate(missed_pts = optimal_pts - actual_pts) |>
+  select(team, missed_pts) |>
+  inner_join(team_records |>
+  select(team, pct), by = "team")
+
+missed_records |>
+  ggplot(aes(missed_pts, pct)) +
+  # geom_point(aes(col = team), size = 5, show.legend = F) +
+  ggrepel::geom_text_repel(aes(label = team), size = 3) +
+  geom_vline(xintercept = mean(missed_records$missed_pts), linetype = "dashed", alpha = 0.5) +
+  geom_hline(yintercept = mean(missed_records$pct), linetype = "dashed", alpha = 0.5) +
+  labs(x = "Missed Points (Full Season)", y = "Win Percentage",
+       title = "How is lineup setting affecting team performance?")
+```
 
 
 
