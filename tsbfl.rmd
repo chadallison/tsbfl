@@ -19,6 +19,8 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Highest Scoring Games]
 - [Biggest Blowouts]
 - [Closest Games]
+- [Most Points Scored by One Team]
+- [Fewest Points Scored by One Team]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)

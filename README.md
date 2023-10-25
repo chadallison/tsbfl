@@ -18,6 +18,8 @@ Travis Scott Burger Fantasy League
 - [Highest Scoring Games](#highest-scoring-games)
 - [Biggest Blowouts](#biggest-blowouts)
 - [Closest Games](#closest-games)
+- [Most Points Scored by One Team](#most-points-scored-by-one-team)
+- [Fewest Points Scored by One Team](#fewest-points-scored-by-one-team)
 
 ------------------------------------------------------------------------
 
