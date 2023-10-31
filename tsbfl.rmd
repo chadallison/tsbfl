@@ -567,9 +567,3 @@ intersect(unique(draft$player), regex_names)
 
 
 
-
-
-
-
-
-

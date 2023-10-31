@@ -64,9 +64,9 @@ Travis Scott Burger Fantasy League
 - Week 3: Free Willy def. Injured Reserves 147.9-130.44
 - Week 4: Injured Reserves def. Shock Squad 131.48-126.72
 - Week 2: Shock Squad def. He’s Litewally Gwiddying 132.36-125.3
+- Week 8: Free Willy def. Shock Squad 138.28-124.74
 - Week 2: Henry Ruggs Driving School def. Šæñ Fräńßīśčo 4D9RRRz
   135.36-120.7
-- Week 3: Bearly Alive def. He’s Litewally Gwiddying 147.32-120.12
 
 ------------------------------------------------------------------------
 
@@ -97,9 +97,9 @@ Travis Scott Burger Fantasy League
 - Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
   104.36
 - Week 3: Free Willy def. Injured Reserves 147.9 to 130.44
+- Week 8: Henry Ruggs Driving School def. Bearly Alive 158.98 to 116.86
 - Week 3: Bearly Alive def. He’s Litewally Gwiddying 147.32 to 120.12
-- Week 4: Injured Reserves def. Shock Squad 131.48 to 126.72
-- Week 2: Shock Squad def. He’s Litewally Gwiddying 132.36 to 125.3
+- Week 8: Free Willy def. Shock Squad 138.28 to 124.74
 
 ------------------------------------------------------------------------
 
@@ -128,19 +128,19 @@ Travis Scott Burger Fantasy League
 ### Most Points Scored by One Team
 
 - 184.94 (Burlington Throat Factory, Week 5)
+- 158.98 (Henry Ruggs Driving School, Week 8)
 - 147.9 (Free Willy, Week 3)
 - 147.32 (Bearly Alive, Week 3)
 - 146.12 (Šæñ Fräńßīśčo 4D9RRRz, Week 3)
-- 141.22 (Big Digg Hurts, Week 4)
 
 ------------------------------------------------------------------------
 
 ### Fewest Points Scored by One Team
 
 - 72.64 (Šæñ Fräńßīśčo 4D9RRRz, Week 4)
+- 72.74 (Injured Reserves, Week 8)
 - 74.12 (Henry Ruggs Driving School, Week 5)
 - 77.06 (Burlington Throat Factory, Week 2)
 - 79.14 (Bearly Alive, Week 7)
-- 80.32 (Antonio Brown’s Translator, Week 1)
 
 ------------------------------------------------------------------------
