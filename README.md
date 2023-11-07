@@ -72,11 +72,12 @@ Travis Scott Burger Fantasy League
 
 ### Fewest Points Scored in a Victory
 
+- Week 9: Antonio Brown’s Translator def. He’s Litewally Gwiddying
+  79.82-71.14
 - Week 6: Free Willy def. He’s Litewally Gwiddying 88.8-82.32
 - Week 4: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 89.24-72.64
+- Week 9: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 94.26-74.88
 - Week 1: Bearly Alive def. Injured Reserves 102.54-97.26
-- Week 6: Burlington Throat Factory def. Injured Reserves 102.64-95.88
-- Week 7: Big Digg Hurts def. Bearly Alive 103.3-79.14
 
 ------------------------------------------------------------------------
 
@@ -137,10 +138,10 @@ Travis Scott Burger Fantasy League
 
 ### Fewest Points Scored by One Team
 
+- 71.14 (He’s Litewally Gwiddying, Week 9)
 - 72.64 (Šæñ Fräńßīśčo 4D9RRRz, Week 4)
 - 72.74 (Injured Reserves, Week 8)
 - 74.12 (Henry Ruggs Driving School, Week 5)
-- 77.06 (Burlington Throat Factory, Week 2)
-- 79.14 (Bearly Alive, Week 7)
+- 74.88 (Šæñ Fräńßīśčo 4D9RRRz, Week 9)
 
 ------------------------------------------------------------------------
