@@ -56,17 +56,6 @@ all_teams = sort(unique(c(unique(end_games$home_team), unique(end_games$away_tea
 
 ___
 
-```{r echo = F}
-data.frame(x = c("Times Jerry has sent in his video", "Times I've thought about killing myself"), y = c(0, 73)) |>
-  mutate(x = factor(x, levels = c("Times Jerry has sent in his video", "Times I've thought about killing myself"))) |>
-  ggplot(aes(x, y)) +
-  geom_col(fill = "#BCA8C8") +
-  geom_text(aes(label = y), vjust = -0.5) +
-  labs(x = NULL, y = NULL, title = "Very informative and important graph")
-```
-
-___
-
 ### Team Standings
 
 ```{r echo = F}
@@ -546,7 +535,6 @@ regex_names = data.frame(all_players) |>
 
 intersect(unique(draft$player), regex_names)
 ```
-
 
 
 

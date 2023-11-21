@@ -23,43 +23,39 @@ Travis Scott Burger Fantasy League
 
 ------------------------------------------------------------------------
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
-------------------------------------------------------------------------
-
 ### Team Standings
 
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Points Scored Per Game
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Points Against Per Game
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Scatterplot of Points Scored and Against
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Optimal Lineup Setting
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Season-Long Optimal Lineups
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
@@ -86,13 +82,13 @@ Travis Scott Burger Fantasy League
 
 ### Weekly Scoring Trends
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
 ### Close Games
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 ------------------------------------------------------------------------
 
@@ -137,7 +133,7 @@ Travis Scott Burger Fantasy League
 - 165 (Henry Ruggs Driving School, Week 10)
 - 163.38 (Injured Reserves, Week 10)
 - 158.98 (Henry Ruggs Driving School, Week 8)
-- 147.9 (Free Willy, Week 3)
+- 152.8 (Henry Ruggs Driving School, Week 11)
 
 ------------------------------------------------------------------------
 
