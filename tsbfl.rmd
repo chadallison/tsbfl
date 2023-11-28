@@ -469,85 +469,31 @@ few = weekly_scores |>
 
 ___
 
-```{r include = F}
-missed_records = data.frame(team = teams_vec, week = week_vec) |>
-  rowwise() |>
-  mutate(actual_pts = get_score(team, week),
-         optimal_pts = get_optimal_score(team, week)) |>
-  ungroup() |>
-  group_by(team) |>
-  summarise(actual_pts = sum(actual_pts),
-            optimal_pts = sum(optimal_pts)) |>
-  mutate(missed_pts = optimal_pts - actual_pts) |>
-  select(team, missed_pts) |>
-  inner_join(team_records |>
-  select(team, pct), by = "team")
+### Average Win and Loss Scores (in progress)
 
-missed_records |>
-  ggplot(aes(missed_pts, pct)) +
-  # geom_point(aes(col = team), size = 5, show.legend = F) +
-  ggrepel::geom_text_repel(aes(label = team), size = 3) +
-  geom_vline(xintercept = mean(missed_records$missed_pts), linetype = "dashed", alpha = 0.5) +
-  geom_hline(yintercept = mean(missed_records$pct), linetype = "dashed", alpha = 0.5) +
-  labs(x = "Missed Points (Full Season)", y = "Win Percentage",
-       title = "How is lineup setting affecting team performance?")
+```{r echo = F}
+get_avg_win_score = function(team) {
+  return(end_games |>
+    filter(win_team == team) |>
+    pull(win_score) |>
+    mean() |>
+    round(2))
+}
+
+get_avg_lose_score = function(team) {
+  return(end_games |>
+    filter(lose_team == team) |>
+    pull(lose_score) |>
+    mean() |>
+    round(2))
+}
+
+data.frame(team = all_teams) |>
+  mutate(win = sapply(team, get_avg_win_score),
+         lose = sapply(team, get_avg_lose_score),
+         diff = win - lose) |>
+  arrange(desc(diff))
 ```
-
-
-
-
-
-
-
-
-
-```{r include = F}
-opt |>
-  group_by(team_name, week) |>
-  reframe(pct_of_pts = round(pts / sum(pts), 3)) |>
-  group_by(team_name, week) |>
-  slice_max(pct_of_pts, n = 1, with_ties = F) |>
-  ungroup() |>
-  arrange(desc(pct_of_pts))
-```
-
-
-
-```{r include = F}
-opt |>
-  mutate(player = str_remove_all(player, "\n.*")) |>
-  group_by(player) |>
-  summarise(pts = sum(pts)) |>
-  arrange(desc(pts))
-```
-
-
-```{r include = F}
-all_players = opt |>
-  mutate(player = str_remove_all(player, "\n.*")) |>
-  pull(player) |>
-  unique()
-
-regex_names = data.frame(all_players) |>
-  separate(all_players, into = c("first", "last"), sep = " ") |>
-  mutate(name = paste0(substr(first, 1, 1), ". ", last)) |>
-  pull(name)
-
-intersect(unique(draft$player), regex_names)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

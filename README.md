@@ -63,9 +63,9 @@ Travis Scott Burger Fantasy League
 
 - Week 3: Free Willy def. Injured Reserves 147.9-130.44
 - Week 10: Bearly Alive def. Free Willy 131.5-128.34
+- Week 12: Bearly Alive def. Antonio Brown’s Translator 142.4-127.28
 - Week 4: Injured Reserves def. Shock Squad 131.48-126.72
 - Week 2: Shock Squad def. He’s Litewally Gwiddying 132.36-125.3
-- Week 8: Free Willy def. Shock Squad 138.28-124.74
 
 ------------------------------------------------------------------------
 
@@ -97,10 +97,9 @@ Travis Scott Burger Fantasy League
 - Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
   104.36
 - Week 3: Free Willy def. Injured Reserves 147.9 to 130.44
+- Week 12: He’s Litewally Gwiddying def. Big Digg Hurts 153.23 to 125.02
 - Week 8: Henry Ruggs Driving School def. Bearly Alive 158.98 to 116.86
-- Week 3: Bearly Alive def. He’s Litewally Gwiddying 147.32 to 120.12
-- Week 10: Injured Reserves def. Antonio Brown’s Translator 163.38 to
-  102.36
+- Week 12: Bearly Alive def. Antonio Brown’s Translator 142.4 to 127.28
 
 ------------------------------------------------------------------------
 
@@ -133,7 +132,7 @@ Travis Scott Burger Fantasy League
 - 165 (Henry Ruggs Driving School, Week 10)
 - 163.38 (Injured Reserves, Week 10)
 - 158.98 (Henry Ruggs Driving School, Week 8)
-- 152.8 (Henry Ruggs Driving School, Week 11)
+- 153.23 (He’s Litewally Gwiddying, Week 12)
 
 ------------------------------------------------------------------------
 
@@ -146,3 +145,17 @@ Travis Scott Burger Fantasy League
 - 74.88 (Šæñ Fräńßīśčo 4D9RRRz, Week 9)
 
 ------------------------------------------------------------------------
+
+### Average Win and Loss Scores (in progress)
+
+    ##                          team    win   lose  diff
+    ## 1  Henry Ruggs Driving School 136.10  93.98 42.12
+    ## 2            Injured Reserves 137.24  97.58 39.66
+    ## 3   Burlington Throat Factory 128.81  91.84 36.97
+    ## 4       Šæñ Fräńßīśčo 4D9RRRz 129.04  96.63 32.41
+    ## 5              Big Digg Hurts 122.79  95.98 26.81
+    ## 6    He's Litewally Gwiddying 125.56 100.17 25.39
+    ## 7                Bearly Alive 124.64 101.72 22.92
+    ## 8                 Shock Squad 126.53 110.67 15.86
+    ## 9                  Free Willy 115.80 107.90  7.90
+    ## 10 Antonio Brown's Translator 107.57 100.59  6.98
