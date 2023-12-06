@@ -20,6 +20,7 @@ Travis Scott Burger Fantasy League
 - [Closest Games](#closest-games)
 - [Most Points Scored by One Team](#most-points-scored-by-one-team)
 - [Fewest Points Scored by One Team](#fewest-points-scored-by-one-team)
+- [Chug Analysis](#chug-analysis)
 
 ------------------------------------------------------------------------
 
@@ -76,7 +77,8 @@ Travis Scott Burger Fantasy League
 - Week 6: Free Willy def. He’s Litewally Gwiddying 88.8-82.32
 - Week 4: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 89.24-72.64
 - Week 9: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 94.26-74.88
-- Week 1: Bearly Alive def. Injured Reserves 102.54-97.26
+- Week 13: Burlington Throat Factory def. Henry Ruggs Driving School
+  99.36-86
 
 ------------------------------------------------------------------------
 
@@ -118,11 +120,12 @@ Travis Scott Burger Fantasy League
 
 ### Closest Games
 
+- Week 13: Injured Reserves def. He’s Litewally Gwiddying 124.88 to
+  122.44
 - Week 10: Bearly Alive def. Free Willy 131.5 to 128.34
 - Week 4: Injured Reserves def. Shock Squad 131.48 to 126.72
 - Week 1: Bearly Alive def. Injured Reserves 102.54 to 97.26
 - Week 1: Šæñ Fräńßīśčo 4D9RRRz def. Shock Squad 116.64 to 110.88
-- Week 7: Shock Squad def. Henry Ruggs Driving School 117.18 to 111.16
 
 ------------------------------------------------------------------------
 
@@ -146,16 +149,8 @@ Travis Scott Burger Fantasy League
 
 ------------------------------------------------------------------------
 
-### Average Win and Loss Scores (in progress)
+### Chug Analysis
 
-    ##                          team    win   lose  diff
-    ## 1  Henry Ruggs Driving School 136.10  93.98 42.12
-    ## 2            Injured Reserves 137.24  97.58 39.66
-    ## 3   Burlington Throat Factory 128.81  91.84 36.97
-    ## 4       Šæñ Fräńßīśčo 4D9RRRz 129.04  96.63 32.41
-    ## 5              Big Digg Hurts 122.79  95.98 26.81
-    ## 6    He's Litewally Gwiddying 125.56 100.17 25.39
-    ## 7                Bearly Alive 124.64 101.72 22.92
-    ## 8                 Shock Squad 126.53 110.67 15.86
-    ## 9                  Free Willy 115.80 107.90  7.90
-    ## 10 Antonio Brown's Translator 107.57 100.59  6.98
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+------------------------------------------------------------------------

@@ -21,6 +21,7 @@ knit: (function(input, ...) { rmarkdown::render(input, output_file = "README.md"
 - [Closest Games]
 - [Most Points Scored by One Team]
 - [Fewest Points Scored by One Team]
+- [Chug Analysis]
 
 ```{r message = F, warning = F, echo = F}
 library(tidyverse)
@@ -469,31 +470,22 @@ few = weekly_scores |>
 
 ___
 
-### Average Win and Loss Scores (in progress)
+### Chug Analysis
 
 ```{r echo = F}
-get_avg_win_score = function(team) {
-  return(end_games |>
-    filter(win_team == team) |>
-    pull(win_score) |>
-    mean() |>
-    round(2))
-}
-
-get_avg_lose_score = function(team) {
-  return(end_games |>
-    filter(lose_team == team) |>
-    pull(lose_score) |>
-    mean() |>
-    round(2))
-}
-
-data.frame(team = all_teams) |>
-  mutate(win = sapply(team, get_avg_win_score),
-         lose = sapply(team, get_avg_lose_score),
-         diff = win - lose) |>
-  arrange(desc(diff))
+data.frame(name = c("Chad", "Adam", "Matt", "Jerry (1)", "Josh", "Jerry (2)", "JP", "Drew"),
+           time = c(39.57, 12.03, 14.68, 6.91, 35.85, 7.31, 28.94, 15.87)) |>
+  ggplot(aes(reorder(name, -time), time)) +
+  geom_col(fill = "#C4963B") +
+  geom_text(aes(label = time), size = 3, hjust = -0.25) +
+  coord_flip(ylim = c(0, 42)) +
+  scale_y_continuous(breaks = seq(0, 45, by = 5)) +
+  labs(x = NULL, y = "Time", title = "Who knows how to guzzle it like a pro?")
 ```
+
+___
+
+
 
 
 
