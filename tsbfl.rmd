@@ -53,6 +53,31 @@ end_games = games |>
          lose_score = ifelse(home_score > away_score, away_score, home_score))
 
 all_teams = sort(unique(c(unique(end_games$home_team), unique(end_games$away_team))))
+
+# filtering out eliminated teams
+end_games = end_games |>
+  filter(
+    !(week == 15 & home_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & home_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & home_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School")),
+    !(week == 15 & away_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & away_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & away_team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School"))
+  )
+
+# filtering out eliminated teams
+opt = opt |>
+  filter(
+    !(week == 15 & team_name %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & team_name %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & team_name %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School"))
+  )
 ```
 
 ___
@@ -174,6 +199,7 @@ ___
 
 ```{r message = F, warning = F, echo = F}
 get_score = function(team, wk) {
+  # print(sprintf("team: %s, week: %s", team, wk))
   df = end_games |> filter(week == wk & (away_team == team | home_team == team))
   if (df$home_team == team) return(df$home_score)
   if (df$away_team == team) return(df$away_score)
@@ -222,6 +248,19 @@ for (i in 1:max(end_games$week)) {
 }
 
 optimal_df = data.frame(team = teams_vec, week = week_vec) |>
+  filter(!(week == 15 & team %in% c("Bearly Alive", "Henry Ruggs Driving School"))) |>
+  filter(
+    !(week == 15 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School")),
+    !(week == 15 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School"))
+  ) |>
   rowwise() |>
   mutate(actual_pts = get_score(team, week),
          optimal_pts = get_optimal_score(team, week)) |>
@@ -252,6 +291,19 @@ ___
 
 ```{r echo = F}
 szn_optimal = data.frame(team = teams_vec, week = week_vec) |>
+  filter(!(week == 15 & team %in% c("Bearly Alive", "Henry Ruggs Driving School"))) |>
+  filter(
+    !(week == 15 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School")),
+    !(week == 15 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz")),
+    !(week == 16 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy")),
+    !(week == 17 & team %in% c("Injured Reserves", "Antonio Brown's Translator", "He's Litewally Gwiddying", "Šæñ Fräńßīśčo 4D9RRRz",
+                               "Burlington Throat Factory", "Free Willy", "Bearly Alive", "Henry Ruggs Driving School"))
+  ) |>
   rowwise() |>
   mutate(actual_pts = get_score(team, week),
          optimal_pts = get_optimal_score(team, week)) |>
@@ -328,6 +380,7 @@ weekly_scores = data.frame()
 for (i in 1:length(all_teams)) {
   for (j in 1:max(end_games$week)) {
     df = end_games |> filter(week == j & (home_team == all_teams[i] | away_team == all_teams[i]))
+    if (nrow(df) == 0) next
     if (df$home_team == all_teams[i]) value = df$home_score
     if (df$away_team == all_teams[i]) value = df$away_score
     x = data.frame(team = all_teams[i], week = j, score = value)

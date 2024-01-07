@@ -77,8 +77,7 @@ Travis Scott Burger Fantasy League
 - Week 6: Free Willy def. He’s Litewally Gwiddying 88.8-82.32
 - Week 4: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 89.24-72.64
 - Week 9: Free Willy def. Šæñ Fräńßīśčo 4D9RRRz 94.26-74.88
-- Week 13: Burlington Throat Factory def. Henry Ruggs Driving School
-  99.36-86
+- Week 15: Big Digg Hurts def. Burlington Throat Factory 98.78-85.8
 
 ------------------------------------------------------------------------
 
@@ -111,10 +110,10 @@ Travis Scott Burger Fantasy League
   83.6
 - Week 5: Burlington Throat Factory def. Šæñ Fräńßīśčo 4D9RRRz 184.94 to
   104.36
+- Week 15: Shock Squad def. Free Willy 150.14 to 87.14
 - Week 10: Injured Reserves def. Antonio Brown’s Translator 163.38 to
   102.36
-- Week 7: Šæñ Fräńßīśčo 4D9RRRz def. Injured Reserves 140.74 to 83.76
-- Week 4: Big Digg Hurts def. Burlington Throat Factory 141.22 to 88.2
+- Week 14: Antonio Brown’s Translator def. Free Willy 134.86 to 75.58
 
 ------------------------------------------------------------------------
 
